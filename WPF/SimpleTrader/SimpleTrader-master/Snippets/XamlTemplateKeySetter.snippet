@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+    <Title>TemplateKeySetter</Title>
+    <Author>Microsoft Corporation</Author>
+    <Description>Snippet for a new Setter</Description>
+    <HelpUrl>
+    </HelpUrl>
+    <Shortcut>setk</Shortcut>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal Editable="true">
+        <ID>TargetType</ID>
+        <ToolTip>The TargetType of the property to set</ToolTip>
+        <Default></Default>
+        <Function>
+        </Function>
+      </Literal>
+	 <Literal Editable="true">
+        <ID>TargetKey</ID>
+        <ToolTip>The name of the property to set</ToolTip>
+        <Default></Default>
+        <Function>
+        </Function>
+      </Literal>
+    
+    </Declarations>
+    <Code Language="XAML">
+      <![CDATA[<Setter TargetType="$TargetType$" x:Key="$TargetKey$">
+	  <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="$TargetType$">
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+	  </Setter>$selected$$end$]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
