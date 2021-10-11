@@ -94,6 +94,29 @@
     <Build Include="dbo\Stored Procedures\spGetMenu.sql" />
     <Build Include="dbo\Stored Procedures\spAddMenu.sql" />
     <Build Include="dbo\Tables\TimeZone.sql" />
+    <Build Include="dbo\Stored Procedures\spAddCountry.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateCountry.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteCountry.sql" />
+    <Build Include="dbo\Stored Procedures\spAddState.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateState.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteState.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCity.sql" />
+    <Build Include="dbo\Stored Procedures\spAddCity.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateCity.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteCity.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTimeZone.sql" />
+    <Build Include="dbo\Stored Procedures\spAddTimeZone.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateTimeZone.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteTimeZone.sql" />
+    <Build Include="dbo\Tables\ActionElement.sql" />
+    <Build Include="dbo\Tables\ProfileElementRight.sql" />
+    <Build Include="dbo\Tables\UserElementRight.sql" />
+    <Build Include="dbo\Tables\Database.sql" />
+    <Build Include="dbo\Tables\PackageDatabase.sql" />
+    <Build Include="dbo\Tables\Enums.sql" />
+    <Build Include="dbo\Stored Procedures\spAddActionElement.sql" />
+    <Build Include="dbo\Stored Procedures\spAddDatabase.sql" />
+    <Build Include="dbo\Stored Procedures\spAddEnums.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ApplicationManagement.Data.refactorlog" />

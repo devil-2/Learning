@@ -18,27 +18,27 @@ namespace ApplicationManagement.DataAccess.DataAccess
         }
         public async Task<int> SaveCountry(CountryDBModel dBModel)
         {
-            TransactionalDataAccess sql = new(_connectionString);
+            NonTransactionalDataAccess sql = new();
            
-            return await sql.ExecuteScalarAsync<CountryDBModel,int>("spAddCountry", dBModel);
+            return await sql.ExecuteScalarAsync<CountryDBModel,int>("spAddCountry", dBModel, _connectionString);
         }
         public async Task<int> SaveTimeZone(TimeZoneDBModel dBModel)
         {
-            TransactionalDataAccess sql = new(_connectionString);
+            NonTransactionalDataAccess sql = new();
 
-            return await sql.ExecuteScalarAsync<TimeZoneDBModel, int>("spAddCountry", dBModel);
+            return await sql.ExecuteScalarAsync<TimeZoneDBModel, int>("spAddTimeZone", dBModel, _connectionString);
         }
         public async Task<int> SaveState(StateDBModel dBModel)
         {
-            TransactionalDataAccess sql = new(_connectionString);
+            NonTransactionalDataAccess sql = new();
 
-            return await sql.ExecuteScalarAsync<StateDBModel, int>("spAddCountry", dBModel);
+            return await sql.ExecuteScalarAsync<StateDBModel, int>("spAddState", dBModel, _connectionString);
         }
-        public async Task<int> SaveState(CityDBModel dBModel)
+        public async Task<int> SaveCity(CityDBModel dBModel)
         {
-            TransactionalDataAccess sql = new(_connectionString);
+            NonTransactionalDataAccess sql = new();
 
-            return await sql.ExecuteScalarAsync<CityDBModel, int>("spAddCountry", dBModel);
+            return await sql.ExecuteScalarAsync<CityDBModel, int>("spAddCity", dBModel, _connectionString);
         }
 
         public async Task<List<CountryDBModel>> GetCountry()
@@ -60,7 +60,7 @@ namespace ApplicationManagement.DataAccess.DataAccess
         public async Task<List<LanguageDBModel>> GetLanguage()
         {
             NonTransactionalDataAccess sql = new();
-            return await sql.QueryAsync<LanguageDBModel>("spGetLanguages", _connectionString);
+            return await sql.QueryAsync<LanguageDBModel>("spGetLanguage", _connectionString);
         }
 
         public async Task SaveLanguage(LanguageDBModel model)

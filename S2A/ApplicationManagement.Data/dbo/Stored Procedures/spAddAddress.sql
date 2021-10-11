@@ -12,7 +12,6 @@ begin
 	INSERT INTO [dbo].[Address]([AddressLine1], [AddressLine2], [City], [State], [Country], [Pincode])
 	values (@AddressLine1, @AddressLine2, @City, @State, @Country, @Pincode )
 
-	Select @Id = SCOPE_IDENTITY();
-	Select @Id as Id;
+	Select SCOPE_IDENTITY() as Id;
 end
 	

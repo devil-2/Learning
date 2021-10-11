@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ApplicationManagement.DataAccess.Models;
@@ -24,22 +23,28 @@ namespace AppConsole
             Console.WriteLine("Hello World!");
             try
             {
+                await LoadLanguageAndCountries(false);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private static async Task LoadLanguageAndCountries(bool load)
+        {
+            if (load)
+            {
                 LabelData label = new(2057, "Data Source=.\\SQL2014; DataBase=Translation;Integrated Security=True; MultipleActiveResultSets=true;");
                 LanguageData data = new("Data Source=.\\SQL2014; DataBase=Translation;Integrated Security=True; MultipleActiveResultSets=true;");
                 CountryData countrydt = new("Data Source=.\\SQL2014; DataBase=ApplicationManagement;Integrated Security=True; MultipleActiveResultSets=true;");
                 var txtCountry = File.ReadAllText(@"C:\Users\A377272\source\repos\Learning\Learning\Learning\S2A\countries+states+cities.json");
                 var txtLanguage = File.ReadAllText(@"C:\Users\A377272\source\repos\Learning\Learning\Learning\S2A\languages.json");
-                //var countries = JsonSerializer.Deserialize<List<Root>>(txtCountry);
-               // var languageList = await data.GetLanguage();
-                //await SaveCountry(label, countrydt, countries, languageList);
-                //var languages = JsonSerializer.Deserialize<List<Language>>(txtLanguage);
-                // await SaveLanguage(label, data, languages);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
+                var countries = JsonSerializer.Deserialize<List<Root>>(txtCountry);
+                var languages = JsonSerializer.Deserialize<List<Language>>(txtLanguage);
+                await SaveLanguage(label, data, languages);
+                var languageList = await data.GetLanguage();
+                await SaveCountry(label, countrydt, countries, languageList); 
             }
         }
 
@@ -47,6 +52,8 @@ namespace AppConsole
         {
             foreach (var cntry in countries)
             {
+                decimal.TryParse(cntry.latitude, out decimal lat);
+                decimal.TryParse(cntry.longitude, out decimal lon);
                 var country = new CountryDBModel
                 {
                     ISO3 = cntry.iso3,
@@ -56,12 +63,11 @@ namespace AppConsole
                     Currency = cntry.currency,
                     Symbol = cntry.currency_symbol,
                     TLD = cntry.tld,
-                    Latitude = cntry.latitude,
-                    Longitude = cntry.longitude,
+                    Latitude = lat,
+                    Longitude = lon,
                     Emoji = cntry.emoji,
                     EmojiU = cntry.emojiU
                 };
-
                 var lblName = new LabelDBModel { LanguageId = 2057, Translation = cntry.name };
                 var lblCapital = new LabelDBModel { LanguageId = 2057, Translation = cntry.capital };
                 var lblNative = new LabelDBModel { LanguageId = 2057, Translation = cntry.native };
@@ -73,19 +79,38 @@ namespace AppConsole
                 country.RegionLabel = await label.SaveTranslation(lblRegion);
                 country.SubRegionLabel = await label.SaveTranslation(lblSubRegion);
                 country.Id = await countrydt.SaveCountry(country);
-                var tp = cntry.translations.GetType();
-                foreach (var pr in tp.GetProperties())
+                //await SaveTranslations(label, languageList, cntry, country);
+                Console.Write($"{cntry.name}:TimeZones[ ");
+                await SaveTimeZones(label, countrydt, cntry, country);
+                Console.WriteLine($"]");
+                Console.Write($":States[ ");
+                await SaveState(label, countrydt, cntry, country);
+                Console.WriteLine($"]");
+         
+            }
+            Console.WriteLine($"Saved!!");
+
+        }
+
+        private static async Task SaveTranslations(LabelData label, List<LanguageDBModel> languageList, Root cntry, CountryDBModel country)
+        {
+            var tp = cntry.translations.GetType();
+            foreach (var pr in tp.GetProperties())
+            {
+                try
                 {
                     var lang = languageList.Where(x => x.Code.EndsWith(pr.Name));
                     var trans = pr.GetValue(tp).ToString();
                     foreach (var l in lang)
                     {
-                        await label.SaveTranslation(new LabelDBModel {Code = country.NameLabel, LanguageId = l.DescriptionLabel, Translation = trans });
+                        await label.SaveTranslation(new LabelDBModel { Code = country.NameLabel, LanguageId = l.DescriptionLabel, Translation = trans });
                     }
                 }
-                await SaveTimeZones(label, countrydt, cntry, country);
-                await SaveState(label, countrydt, cntry, country);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
 
+                }
             }
         }
 
@@ -95,12 +120,12 @@ namespace AppConsole
             {
                 var tZone = new TimeZoneDBModel
                 {
-                    CountryId = country.Id,
+                    Country = country.Id,
                     GmtOffset = tz.gmtOffset,
                     GmtOffsetName = tz.gmtOffsetName,
                     Abbreviation = tz.abbreviation
                 };
-
+                Console.WriteLine($"    {tz.zoneName} ");
                 var lblZone = new LabelDBModel { LanguageId = 2057, Translation = tz.zoneName };
                 var lblTimeZone = new LabelDBModel { LanguageId = 2057, Translation = tz.tzName };
                 tZone.ZoneNameLabel = await label.SaveTranslation(lblZone);
@@ -113,36 +138,42 @@ namespace AppConsole
         {
             foreach (var st in cntry.states)
             {
+                decimal.TryParse(st.latitude, out decimal lat);
+                decimal.TryParse(st.longitude, out decimal lon);
                 var state = new StateDBModel
                 {
-                    CountryId = country.Id,
+                    Country = country.Id,
                     Code = st.state_code,
-                    Latitude = st.latitude,
-                    Longitude = st.longitude,
+                    Latitude = lat,
+                    Longitude = lon,
                     Type = st.type
                 };
+                Console.WriteLine($"    {st.name}:Cities [");
                 var lblStateName = new LabelDBModel { LanguageId = 2057, Translation = st.name };
 
                 state.NameLabel = await label.SaveTranslation(lblStateName);
                 state.Id = await countrydt.SaveState(state);
-
-                await SaveCity(label, countrydt, st, state, lblStateName);
+                await SaveCity(label, countrydt, st, state);
+                Console.WriteLine($"    ]");
             }
         }
 
-        private static async Task SaveCity(LabelData label, CountryData countrydt, State st, StateDBModel state, LabelDBModel lblStateName)
+        private static async Task SaveCity(LabelData label, CountryData countrydt, State st, StateDBModel state)
         {
             foreach (var ct in st.cities)
             {
+                decimal.TryParse(st.latitude, out decimal lat);
+                decimal.TryParse(st.longitude, out decimal lon);
                 var city = new CityDBModel
                 {
-                    Stateid = state.Id,
-                    Latitude = ct.latitude,
-                    Longitude = ct.longitude
+                    State = state.Id,
+                    Latitude = lat,
+                    Longitude = lon
                 };
+                Console.Write($"{ct.name}");
                 var lblCityName = new LabelDBModel { LanguageId = 2057, Translation = ct.name };
-                city.NameLabel = await label.SaveTranslation(lblStateName);
-                await countrydt.SaveState(state);
+                city.NameLabel = await label.SaveTranslation(lblCityName);
+                await countrydt.SaveCity(city);
             }
         }
 
@@ -243,16 +274,16 @@ namespace AppConsole
     {
         public int id { get; set; }
         public string name { get; set; }
-        public decimal latitude { get; set; }
-        public decimal longitude { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
     }
     public class State
     {
         public int id { get; set; }
         public string name { get; set; }
         public string state_code { get; set; }
-        public decimal latitude { get; set; }
-        public decimal longitude { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
         public string type { get; set; }
         public List<City> cities { get; set; }
     }
@@ -273,8 +304,8 @@ namespace AppConsole
         public string subregion { get; set; }
         public List<Timezone> timezones { get; set; }
         public Translations translations { get; set; }
-        public decimal latitude { get; set; }
-        public decimal longitude { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
         public string emoji { get; set; }
         public string emojiU { get; set; }
         public List<State> states { get; set; }

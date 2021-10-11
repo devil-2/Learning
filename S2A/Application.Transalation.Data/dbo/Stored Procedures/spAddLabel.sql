@@ -6,7 +6,7 @@ AS
 begin
 	declare @Id int;
 	set nocount on;
-
+	set @Translation = isnull(@Translation,' ');
 	if exists(SELECT Code from [dbo].[Label] where Code = @Code and LanguageId = @LanguageId)
 	BEGIN
 		select -1;

@@ -36,7 +36,7 @@ namespace ApplicationManagement.DataAccess.Models
     public class TimeZoneDBModel
     {
         public int Id { get; set; }
-        public int CountryId { get; set; }
+        public int Country { get; set; }
         public int ZoneNameLabel { get; set; }
         public int GmtOffset { get; set; }
         public string GmtOffsetName { get; set; }
@@ -78,23 +78,24 @@ namespace ApplicationManagement.DataAccess.Models
         public decimal Longitude { get; set; }
         public string Emoji { get; set; }
         public string EmojiU { get; set; }
+        public byte Flag { get; set; }
+        public string WikiDataId { get; set; }
     }
 
     public class StateDBModel 
     {
         public int Id { get; set; }
-        public int CountryId { get; set; }
+        public int Country { get; set; }
         public int NameLabel { get; set; }
         public string Code { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public string Type { get; set; }
-        public IEnumerable<CityDBModel> Cities { get; set; }
     }
     public class CityDBModel
     {
         public int Id { get; set; }
-        public int Stateid { get; set; }
+        public int State { get; set; }
         public int NameLabel { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }

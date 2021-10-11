@@ -13,9 +13,8 @@
     [NativeLabel] INT NULL, 
     [RegionLabel] INT NULL, 
     [SubRegionLabel] INT NULL, 
-    [TimeZones] INT NULL, 
-    [Latitude] DECIMAL(10, 8) NULL, 
-    [Longitude] DECIMAL(10, 8) NULL, 
+    [Latitude] DECIMAL(15, 8) NULL, 
+    [Longitude] DECIMAL(15, 8) NULL, 
     [Emoji] VARCHAR(200) NULL, 
     [EmojiU] VARCHAR(200) NULL, 
     [Created] DATETIME2 NOT NULL DEFAULT getutcdate(), 
@@ -23,5 +22,4 @@
     [Flag] BIT NULL DEFAULT 0, 
     [WikiDataId] VARCHAR(255) NULL,
     [Deleted] BIT NOT NULL DEFAULT 0
-
 )

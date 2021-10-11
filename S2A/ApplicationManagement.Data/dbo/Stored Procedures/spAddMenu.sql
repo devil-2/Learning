@@ -1,14 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[spAddMenu]
 	@Id int output,
 	@Package int,
-	@NameLabel decimal,
+	@NameLabel int,
 	@Parent int,
 	@CanAdd bit,
 	@CanView bit,
 	@CanDelete bit,
 	@CanUpdate bit,
 	@Action int,
-	@Type smallint
+	@Type int
 AS
 begin
 	set nocount on;
