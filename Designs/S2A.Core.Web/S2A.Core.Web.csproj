@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>S2A.Core.Web</AssemblyName>
+    <Authors>Vikas Mishra</Authors>
+    <Company>S2A</Company>
+    <Description>The ASP.Net Core easy-integration support the cross-platform base framework useful for all projects that use .Net Core</Description>
+    <!--
+    <PackageProjectUrl>https://github.com/angelsix/dna-framework</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/angelsix/dna-framework</RepositoryUrl>
+    <PackageTags>dna framework asp net angelsix luke malpass web core cross platform</PackageTags>
+    <PackageReleaseNotes>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core</PackageReleaseNotes>
+    -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.1</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <ProjectReference Include="..\S2A.Core\S2A.Core.csproj" />
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\net5.0\S2A.Web.Framework.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\net5.0\S2A.Web.Framework.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>
