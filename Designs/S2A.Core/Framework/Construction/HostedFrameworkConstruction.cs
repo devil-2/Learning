@@ -9,8 +9,7 @@
     /// <example>
     /// 
     /// <para>
-    ///     This is an example setup code for building a Dna Framework Construction
-    ///     if you include the Dna.Framework.AspNet NuGet package
+    ///     This is an example setup code for building a  Framework Construction
     /// </para>
     /// 
     /// <code>
@@ -19,8 +18,8 @@
     ///     // ------------------------------
     ///             
     ///         return WebHost.CreateDefaultBuilder()
-    ///             // Merge Dna Framework into ASP.Net Core environment
-    ///             .UseDnaFramework(construct =>
+    ///             // Merge Framework into ASP.Net Core environment
+    ///             .UseFramework(construct =>
     ///             {
     ///                 // Add file logger
     ///                 construct.AddFileLogger();
@@ -28,8 +27,8 @@
     ///                 //
     ///                 // NOTE: If you want to configure anything in ConfigurationBuilder just use 
     ///                 //       ConfigureAppConfiguration(builder => {}) and then you  have
-    ///                 //       access to Dna.Framework.Environment and Construction at that point
-    ///                 //       like the normal flow of Dna Framework setup
+    ///                 //       access to Framework.Environment and Construction at that point
+    ///                 //       like the normal flow of Framework setup
     ///                 //
     ///      
     ///                 // The last step is inside Startup Configure method to call 
@@ -40,8 +39,8 @@
     ///     //  Startup.cs (in Configure)
     ///     // ---------------------------
     ///     
-    ///         // Use Dna Framework
-    ///         app.UseDnaFramework();
+    ///         // Use  Framework
+    ///         app.UseFramework();
     /// 
     /// </code>
     /// 

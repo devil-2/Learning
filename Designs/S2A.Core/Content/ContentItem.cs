@@ -1,7 +1,7 @@
 ﻿namespace S2A.Core
 {
     /// <summary>
-    /// Details about an item that can be used to pass around the Dna Framework providing basic trackable details
+    /// Details about an item that can be used to pass around the Framework providing basic trackable details
     /// on a file that exists on a system
     /// </summary>
     public class ContentItem

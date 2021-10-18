@@ -5,7 +5,7 @@ using System;
 namespace S2A.Core
 {
     /// <summary>
-    /// The construction information when starting up and configuring Dna.Framework
+    /// The construction information when starting up and configuring Framework
     /// </summary>
     public class FrameworkConstruction
     {
@@ -44,12 +44,12 @@ namespace S2A.Core
         }
 
         /// <summary>
-        /// The environment used for the Dna.Framework
+        /// The environment used for the Framework
         /// </summary>
         public IFrameworkEnvironment Environment { get; protected set; }
 
         /// <summary>
-        /// The configuration used for the Dna.Framework
+        /// The configuration used for the Framework
         /// </summary>
         public IConfiguration Configuration { get; protected set; }
 

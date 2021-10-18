@@ -6,12 +6,6 @@
     <Authors>Vikas Mishra</Authors>
     <Company>S2A</Company>
     <Description>The ASP.Net Core easy-integration support the cross-platform base framework useful for all projects that use .Net Core</Description>
-    <!--
-    <PackageProjectUrl>https://github.com/angelsix/dna-framework</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/angelsix/dna-framework</RepositoryUrl>
-    <PackageTags>dna framework asp net angelsix luke malpass web core cross platform</PackageTags>
-    <PackageReleaseNotes>The ASP.Net Core easy-integration support for Dna.Framework, the cross-platform base framework useful for all projects that use .Net Core</PackageReleaseNotes>
-    -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.0.1</Version>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>

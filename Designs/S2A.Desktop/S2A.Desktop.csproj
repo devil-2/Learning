@@ -4,28 +4,23 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>S2A.Desktop</AssemblyName>
+    <AssemblyName>S2A</AssemblyName>
     <RootNamespace>S2A</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Animation\" />
-    <Folder Include="AttachedProperties\" />
-    <Folder Include="Controls\" />
-    <Folder Include="DI\" />
-    <Folder Include="Dialogs\" />
-    <Folder Include="Fonts\" />
-    <Folder Include="Images\" />
-    <Folder Include="Converters\" />
+    <None Remove="Images\Backgrounds\emoji-background.png" />
+    <None Remove="Images\Logo\icon.ico" />
+    <None Remove="Images\Logo\logo-small.png" />
+    <None Remove="Images\Logo\logo.png" />
+    <None Remove="Images\Sample\rusty.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Helpers\" />
     <Folder Include="State\" />
     <Folder Include="Views\" />
-    <Folder Include="WPFViewModels\" />
-    <Folder Include="Window\" />
-    <Folder Include="WebRequests\" />
-    <Folder Include="Styles\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +30,22 @@
   <ItemGroup>
     <ProjectReference Include="..\S2A.Core\S2A.Core.csproj" />
     <ProjectReference Include="..\S2A.Desktop.Core\S2A.Desktop.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\emoji-background.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Logo\icon.ico" />
+    <Resource Include="Images\Logo\logo-small.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Logo\logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Sample\rusty.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

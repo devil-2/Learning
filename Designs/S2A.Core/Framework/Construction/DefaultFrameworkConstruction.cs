@@ -10,7 +10,7 @@ namespace S2A.Core
     /// <example>
     /// 
     /// <para>
-    ///     This is an example setup code for building a Dna Framework Construction
+    ///     This is an example setup code for building a Framework Construction
     /// </para>
     /// 
     /// <code>

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace S2A.Desktop.ViewModels.Base
+namespace S2A.Desktop
 {
     /// <summary>
     /// A base view model that fires Property Changed events as needed
@@ -17,7 +17,7 @@ namespace S2A.Desktop.ViewModels.Base
         /// A global lock for property checks so prevent locking on different instances of expressions.
         /// Considering how fast this check will always be it isn't an issue to globally lock all callers.
         /// </summary>
-        protected object mPropertyValueCheckLock = new object();
+        protected object PropertyValueCheckLock = new object();
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace S2A.Desktop.ViewModels.Base
         protected async Task RunCommandAsync(Expression<Func<bool>> updatingFlag, Func<Task> action)
         {
             // Lock to ensure single access to check
-            lock (mPropertyValueCheckLock)
+            lock (PropertyValueCheckLock)
             {
                 // Check if the flag property is true (meaning the function is already running)
                 if (updatingFlag.GetPropertyValue())
@@ -86,7 +86,7 @@ namespace S2A.Desktop.ViewModels.Base
         protected async Task<T> RunCommandAsync<T>(Expression<Func<bool>> updatingFlag, Func<Task<T>> action, T defaultValue = default)
         {
             // Lock to ensure single access to check
-            lock (mPropertyValueCheckLock)
+            lock (PropertyValueCheckLock)
             {
                 // Check if the flag property is true (meaning the function is already running)
                 if (updatingFlag.GetPropertyValue())

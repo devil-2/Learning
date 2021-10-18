@@ -5,11 +5,11 @@ using static S2A.Core.FrameworkDI;
 namespace S2A.Core
 {
     /// <summary>
-    /// The main entry point into the Dna Framework library
+    /// The main entry point into the Framework library
     /// </summary>
     /// <remarks>
     /// <para>
-    ///     To use Dna.Framework you need to create a new <see cref="FrameworkConstruction"/>
+    ///     To use Framework you need to create a new <see cref="FrameworkConstruction"/>
     ///     such as <see cref="DefaultFrameworkConstruction"/> and then add your services
     ///     then finally <see cref="Framework.Build(FrameworkConstruction, bool)"/>. For example:
     /// </para>
@@ -49,7 +49,7 @@ namespace S2A.Core
         /// start our application
         /// </summary>
         /// <param name="construction">The construction</param>
-        /// <param name="logStarted">Specifies if the Dna Framework Started message should be logged</param>
+        /// <param name="logStarted">Specifies if the Framework Started message should be logged</param>
         public static void Build(this FrameworkConstruction construction, bool logStarted = true)
         {
             // Build the service provider
@@ -57,7 +57,7 @@ namespace S2A.Core
 
             // Log the startup complete
             if (logStarted)
-                Logger.LogCriticalSource($"Dna Framework started in {FrameworkEnvironment.Configuration}...");
+                Logger.LogCriticalSource($"Framework started in {FrameworkEnvironment.Configuration}...");
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace S2A.Core
         /// such as ASP.Net Core applications
         /// </summary>
         /// <param name="provider">The provider</param>
-        /// <param name="logStarted">Specifies if the Dna Framework Started message should be logged</param>
+        /// <param name="logStarted">Specifies if the Framework Started message should be logged</param>
         public static void Build(IServiceProvider provider, bool logStarted = true)
         {
             // Build the service provider
@@ -74,11 +74,11 @@ namespace S2A.Core
 
             // Log the startup complete
             if (logStarted)
-                Logger.LogCriticalSource($"Dna Framework started in {FrameworkEnvironment.Configuration}...");
+                Logger.LogCriticalSource($"Framework started in {FrameworkEnvironment.Configuration}...");
         }
 
         /// <summary>
-        /// The initial call to setting up and using the Dna Framework
+        /// The initial call to setting up and using the Framework
         /// </summary>
         /// <typeparam name="T">The type of construction to use</typeparam>
         public static FrameworkConstruction Construct<T>()
@@ -92,7 +92,7 @@ namespace S2A.Core
 
 
         /// <summary>
-        /// The initial call to setting up and using the Dna Framework.
+        /// The initial call to setting up and using the Framework.
         /// </summary>
         /// <typeparam name="T">The type of construction to use</typeparam>
         /// <param name="constructionInstance">The instance of the construction to use</param>

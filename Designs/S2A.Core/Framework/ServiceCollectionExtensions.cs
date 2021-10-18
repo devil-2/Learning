@@ -13,9 +13,9 @@ namespace S2A.Core
         /// </summary>
         /// <param name="services">The services to use</param>
         /// <returns></returns>
-        public static FrameworkConstruction AddDnaFramework(this IServiceCollection services)
+        public static FrameworkConstruction AddFramework(this IServiceCollection services)
         {
-            // Add the services into the Dna Framework
+            // Add the services into the Framework
             Framework.Construction.UseHostedServices(services);
 
             // Return construction for chaining

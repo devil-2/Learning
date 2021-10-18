@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace S2A.DesktopDesign.Exceptions
+namespace S2A.Desktop
 {
     public class InvalidViewModelException : Exception
     {

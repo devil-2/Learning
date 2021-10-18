@@ -5,12 +5,12 @@ using Microsoft.Extensions.Logging;
 namespace S2A.Core
 {
     /// <summary>
-    /// The core services that could be available in the Dna Framework
+    /// The core services that could be available in the Framework
     /// for quick and easy access anywhere in code.
     /// </summary>
     /// <example>
     /// <code>
-    ///     using static Dna.FrameworkDI
+    ///     using static S2A.FrameworkDI
     ///     
     ///     Logger.Log(Configuration["something"]);
     /// </code>

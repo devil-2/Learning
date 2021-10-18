@@ -8,7 +8,7 @@ using System.Reflection;
 namespace S2A.Core
 {
     /// <summary>
-    /// Extension methods for the Dna Framework
+    /// Extension methods for the Framework
     /// </summary>
     public static class FrameworkExtensions
     {
@@ -75,7 +75,7 @@ namespace S2A.Core
         #endregion
 
         /// <summary>
-        /// Injects all of the default services used by Dna Framework for a quicker and cleaner setup
+        /// Injects all of the default services used by Framework for a quicker and cleaner setup
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <returns></returns>
@@ -115,8 +115,7 @@ namespace S2A.Core
             });
 
             // Adds a default logger so that we can get a non-generic ILogger
-            // that will have the category name of "Dna"
-            construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("Dna"));
+            construction.Services.AddTransient(provider => provider.GetService<ILoggerFactory>().CreateLogger("S2A.Core"));
 
             // Chain the construction
             return construction;

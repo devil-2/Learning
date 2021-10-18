@@ -15,7 +15,7 @@ namespace S2A.Desktop.Core
         public static string GetAbsoluteRoute(string relativeUrl)
         {
             // Get the host
-            var host = FrameworkDI.Configuration["FasettoWordServer:HostUrl"];
+            var host = FrameworkDI.Configuration["Server:HostUrl"];
 
             // If they are not passing any URL...
             if (string.IsNullOrEmpty(relativeUrl))
@@ -28,7 +28,7 @@ namespace S2A.Desktop.Core
                 relativeUrl = $"/{relativeUrl}";
 
             // Return combined URL
-            return FrameworkDI.Configuration["FasettoWordServer:HostUrl"] + relativeUrl;
+            return FrameworkDI.Configuration["Server:HostUrl"] + relativeUrl;
         }
     }
 }

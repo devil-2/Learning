@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace S2A.DesktopDesign.Commands
+namespace S2A.Desktop
 {
     /// <summary>
     /// A basic command that runs an Action

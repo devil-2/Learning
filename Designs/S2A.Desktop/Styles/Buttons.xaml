@@ -88,7 +88,7 @@
         <Setter Property="Padding" Value="50 10" />
         <Setter Property="Margin" Value="0 10" />
 
-        <Setter Property="local:IsBusyProperty.Value" Value="False" />
+        <!--<Setter Property="local:IsBusyProperty.Value" Value="False" />-->
 
         <Setter Property="Template">
             <Setter.Value>
@@ -100,8 +100,16 @@
                             Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="True">
                         <Grid>
-                            <TextBlock Text="{TemplateBinding Content}" 
+                            <!--<TextBlock Text="{TemplateBinding Content}" 
                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
+                                   Focusable="False" 
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                   Margin="{TemplateBinding Padding}" 
+                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
+                            <TextBlock Text="{TemplateBinding Content}" 
                                    Focusable="False" 
                                    FontFamily="{TemplateBinding FontFamily}"
                                    FontSize="{TemplateBinding FontSize}"
@@ -110,11 +118,16 @@
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
-                            <TextBlock Style="{StaticResource SpinningText}" 
+                            <!--<TextBlock Style="{StaticResource SpinningText}" 
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                    FontSize="{TemplateBinding FontSize}"
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter}, ConverterParameter=True}"
+                                   />-->
+                            <TextBlock Style="{StaticResource SpinningText}" 
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                   FontSize="{TemplateBinding FontSize}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                    />
 
                         </Grid>

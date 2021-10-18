@@ -138,7 +138,7 @@ namespace S2A.Core
                 // Currently unknown
                 else
                 {
-                    // TODO: Throw error once we have Dna Framework exception types
+                    // TODO: Throw error once we have Framework exception types
                 }
 
                 // 
